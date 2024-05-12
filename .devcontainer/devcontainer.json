@@ -1,0 +1,45 @@
+{
+    "name": "ROS 2 Development Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            // "HOST_USERNAME": "${localEnv:USER}",
+            // "HOST_USER_UID": "${localEnv:USER_ID}",
+            // "HOST_USER_GID": "${localEnv:GROUP_ID}",
+            // "HOSTNAME": "2iron"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "clangd.path": "/usr/bin/clangd"
+            },
+            "extensions": [
+                "llvm-vs-code-extensions.vscode-clangd",
+                "twxs.cmake",
+                "jeff-hykin.better-cpp-syntax",
+                "ms-vscode.cmake-tools",
+                "ms-python.python",
+                "ms-iot.vscode-ros",
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    },
+    "containerEnv": {
+        "DISPLAY": "unix:0",
+        "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
+        "ROS_DOMAIN_ID": "0",
+        "http_proxy": "http://172.17.0.1:8118",
+        "all_proxy": "socks5://172.17.0.1:10808"
+    },
+    "mounts": [
+        // `gui: xhost local:root` in localhost
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+    ],
+    "runArgs": [
+        // "--net=host",
+        "-e", "DISPLAY=${env:DISPLAY}"
+    ],
+    "privileged": true
+}
