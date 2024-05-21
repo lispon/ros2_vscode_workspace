@@ -1,11 +1,13 @@
 
 source /opt/ros/iron/setup.zsh
-## NOT move to last.
-if [ -s "install/setup.zsh" ]; then
-    source install/setup.zsh
+WS_ROOT=/workspaces/ros2_ws
+## source first.
+if [ -f "${WS_ROOT}/install/local_setup.zsh" ]; then
+   source ${WS_ROOT}/install/local_setup.zsh
 fi
-
 export _colcon_cd_root=/opt/ros/iron/
 source /usr/share/colcon_cd/function/colcon_cd.sh
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 complete -o nospace -o default -F _python_argcomplete "ros2"
+
+alias colcon-build='colcon build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON'

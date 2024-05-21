@@ -35,7 +35,10 @@
     "mounts": [
         // `gui: xhost local:root` in localhost
         "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
-        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+        "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached",
+        // container is the user name.
+        "source=${localEnv:HOME}/.zsh_history,target=/home/container/.zsh_history,type=bind,consistency=consistent",
+        "source=${localEnv:HOME}/.tmux.conf,target=/home/container/.tmux.conf,type=bind,consistency=consistent"
     ],
     "runArgs": [
         // "--net=host",

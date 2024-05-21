@@ -28,9 +28,9 @@ RUN git clone https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git /home/${USERN
     && REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git bash /home/${USERNAME}/tmp/tools/install.sh \
     && rm -r /home/${USERNAME}/tmp \
     ## && chsh -s $(which zsh) \
-    # && git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions \
-    # && git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting \
-    # && sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions)/' ~/.zshrc \
+    && git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions \
+    && git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting \
+    && sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions)/' ~/.zshrc \
     && echo 'source ~/.zshrc_d' >> ~/.zshrc
 
 # pip3
